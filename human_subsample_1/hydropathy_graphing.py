@@ -7,7 +7,7 @@
 
 import sys
 
-#
+#Usage statement with for loop
 
 if (len(sys.argv)) < 6: 
 	print ""
@@ -19,7 +19,7 @@ if (len(sys.argv)) < 6:
 	print ""
 	sys.exit()
 
-# 
+#For loop for arguments 
 
 for i in range(len(sys.argv)): 
 	if sys.argv[i] == "-i"
@@ -61,12 +61,25 @@ InSeqFile.close()
 OutFileName = InSeqFileName.strip('.fasta') + ".output.csv"
 OutFile = open(OutFileName,"w")
 
+#Initialize lists to write to for window counter and value 
+
+window_counters=[]
+Values=[]
+
+
 for i in range(len(ProtSeq)):
     Value+=Hydropathy[ProtSeq[i]]
     if(i>(window-1) and i<=(len(ProtSeq)-window)):
         Value=Value-Hydropathy[ProtSeq[i-window]]
-        OutString = "%d,%.2f" % (window_counter, Value)
-        OutFile.write(OutString + "\n")
+
+	#
+	window_counters.append(window_counter)
+
+	#
+	Values.append(Value)
+
+        #OutString = "%d,%.2f" % (window_counter, Value)
+        #OutFile.write(OutString + "\n")
 
     window_counter+=1
 
